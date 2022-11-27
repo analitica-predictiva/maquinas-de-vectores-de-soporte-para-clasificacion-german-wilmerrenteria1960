@@ -152,16 +152,16 @@ def pregunta_01():
     En esta función se realiza la carga de datos.
     """
     # Lea el archivo `german.csv` y asignelo al DataFrame `df`
-    df = ____
+    df = pd.read_csv('german.csv')
 
     # Asigne la columna `default` a la variable `y`.
-    ____ = ____
+    y = df['default'].values
 
     # Asigne una copia del dataframe `df` a la variable `X`.
-    ____ = ____.____()
+    X = df.copy()
 
     # Remueva la columna `default` del DataFrame `X`.
-    ____.____(____)
+    X =X.drop('default', axis=1)
 
     # Retorne `X` y `y`
     return X, y
@@ -173,18 +173,18 @@ def pregunta_02():
     """
 
     # Importe train_test_split
-    from ____ import ____
+    from sklearn.model_selection import train_test_split
 
     # Cargue los datos de ejemplo y asigne los resultados a `X` y `y`.
     X, y = pregunta_01()
 
     # Divida los datos de entrenamiento y prueba. La semilla del generador de números
     # aleatorios es 123. Use 100 patrones para la muestra de prueba.
-    (X_train, X_test, y_train, y_test,) = ____(
-        ____,
-        ____,
-        test_size=____,
-        random_state=____,
+    (X_train, X_test, y_train, y_test,) = train_test_split(
+        X,
+        y,
+        test_size=100,
+        random_state=123,
     )
 
     # Retorne `X_train`, `X_test`, `y_train` y `y_test`
